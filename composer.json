@@ -1,9 +1,6 @@
 {
     "name": "emanuele-gian/module-magento2-cs-test",
     "description": "A testing module for CS GitHub functionality",
-    "require": {
-        "magento/framework": ">=101.0.0"
-    },
     "type": "magento2-module",
     "license": [
         "MIT"
