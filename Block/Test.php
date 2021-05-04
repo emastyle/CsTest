@@ -17,6 +17,12 @@ class Test
     }
 
 
+    public function MyUglyMethodAgainAgain()
+    {
+        return 'This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. ';
+    }
+
+
 }
 
 
