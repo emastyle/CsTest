@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EmanueleGian\CsTest\Block;
 
-class Test2
+class Test3
 {
     public function MyUglyMethodTest($test2)
     {
