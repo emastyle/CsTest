@@ -10,8 +10,13 @@ class Test
     {
         return 'This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. ';
     }
-    
-    
+
+    public function MyUglyMethodAgain()
+    {
+        return 'This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. ';
+    }
+
+
 }
 
 
