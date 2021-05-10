@@ -7,6 +7,10 @@ on:
             - Backend
         types:
             - completed
+jobs:
+    test-job:
+        name: Test Step
+        runs-on: ubuntu-latest
         steps:
             -   name: Checkout
                 uses: actions/checkout@v2
