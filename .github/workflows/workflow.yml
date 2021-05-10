@@ -1,0 +1,14 @@
+---
+name: Workflow
+
+on:
+    - pull_request
+    - push
+jobs:
+    backend-job:
+        name: Workflow Step
+        runs-on: ubuntu-latest
+        env:
+            PR_NUMBER: ${{ github.event.number }}
+        steps:
+            - run: echo $PR_NUMBER

@@ -1,21 +1,21 @@
 ---
-name: Test
+name: Backend
 
 on:
     workflow_run:
         workflows:
-            - Backend
+            - Workflow
         types:
             - completed
 jobs:
     test-job:
-        name: Test Step
+        name: Backend Link
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout
                 uses: actions/checkout@v2
                 with:
-                    ref: ${{ github.event.workflow_run.head_branch }}
+                    ref: ${{ github.event.pull_request.head.sha }}
             -   run: git branch
 
             -   uses: shivammathur/setup-php@v2
