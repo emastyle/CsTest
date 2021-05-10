@@ -5,3 +5,5 @@ jobs:
     backend-lint:
         name: Backend Coding Standard Step
         runs-on: ubuntu-latest
+        steps:
+            - run: env
