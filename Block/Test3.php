@@ -8,7 +8,8 @@ class Test3
 {
     public function MyUglyMethodTest($test2)
     {
-        return 'This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. ';
+        $var = 'This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. This is a looong phrase. ';
+        return $var;
     }
 
 
