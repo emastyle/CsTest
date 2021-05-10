@@ -1,5 +1,5 @@
 ---
-name: Backend Test
+name: Test
 
 on:
     workflow_run:
@@ -11,7 +11,8 @@ on:
             -   name: Checkout
                 uses: actions/checkout@v2
                 with:
-                    ref: ${{ github.event.pull_request.head.sha }}
+                    ref: ${{ github.event.workflow_run.head_branch }}
+            -   run: git branch
 
             -   uses: shivammathur/setup-php@v2
                 with:

@@ -1,9 +1,13 @@
 ---
 name: Backend
-on: [ push, pull_request_target ]
+
+on:
+    - pull_request
+    - pull_request_target
+    - push
 jobs:
-    backend-lint:
-        name: Backend Coding Standard Step
+    backend-job:
+        name: Backend Step
         runs-on: ubuntu-latest
         steps:
             - run: env
