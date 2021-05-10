@@ -1,5 +1,5 @@
 ---
-name: Backend Coding Standard
+name: Backend
 on: [ push, pull_request_target ]
 jobs:
     backend-lint:

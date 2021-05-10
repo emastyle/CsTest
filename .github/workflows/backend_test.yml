@@ -4,7 +4,7 @@ name: Backend Test
 on:
     workflow_run:
         workflows:
-            - Backend Coding Standard
+            - Backend
         types:
             - completed
         steps:
