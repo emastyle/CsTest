@@ -1,0 +1,7 @@
+---
+name: Backend Coding Standard
+on: [ push, pull_request_target ]
+jobs:
+    backend-lint:
+        name: Backend Coding Standard Step
+        runs-on: ubuntu-latest
