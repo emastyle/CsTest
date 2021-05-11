@@ -11,8 +11,8 @@ jobs:
     backend-lint:
         runs-on: ubuntu-latest
         needs: [ approve ] # Require the first step to finish
-            environment:
-                name: Approve PR # Our dummy environmen
+        environment:
+           name: Approve PR # Our dummy environmen
     steps:
     - name: Checkout
       uses: actions/checkout@v2
