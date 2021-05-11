@@ -3,8 +3,7 @@ name: Backend Lint
 
 on:
     workflow_run:
-        workflows:
-            - ["Workflow Trigger"]
+        workflows: ["Workflow Trigger"]
         types:
             - requested
 jobs:
