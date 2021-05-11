@@ -42,6 +42,12 @@ jobs:
                   echo ${{ steps.check-pr.outputs.VALID }}
                   echo ${{ steps.check-pr.outputs.payload }}
 
+
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.event.pull_request.head.sha }}
+
             - uses: shivammathur/setup-php@v2
               with:
                   php-version: '7.3'
