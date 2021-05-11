@@ -13,64 +13,24 @@ jobs:
         needs: [ approve ] # Require the first step to finish
         environment:
            name: Approve PR # Our dummy environmen
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-              fetch-depth: 2
-
-        - uses: shivammathur/setup-php@v2
-          with:
-            php-version: '7.3'
-
-        - name: Add composer repositories
-          env:
-            USERNAME: ${{ secrets.COMPOSER_MAGENTO_USERNAME }}
-            PASSWORD: ${{ secrets.COMPOSER_MAGENTO_PASSWORD }}
-          run: composer config repositories.magento composer https://$USERNAME:$PASSWORD@repo.magento.com/
-
-        - name: Install dependencies
-          run: composer install --prefer-dist --no-progress --no-suggest
-
-        - name: Run tests
-          run: composer run-script test
-
-      new-backend-lint:
-        runs-on: ubuntu-latest
-        name: MCS Check
-        container:
-          image: docker.io/davidalger/php:7.4
-
         steps:
-          - name: Checkout repository
-            uses: actions/checkout@v2
-            with:
-                ref: ${{ github.event.pull_request.head.sha }}
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                  fetch-depth: 2
 
-          - name: Add composer repositories
-            env:
-              USERNAME: ${{ secrets.COMPOSER_MAGENTO_USERNAME }}
-              PASSWORD: ${{ secrets.COMPOSER_MAGENTO_PASSWORD }}
-            run: composer config repositories.magento composer https://$USERNAME:$PASSWORD@repo.magento.com/
+            - uses: shivammathur/setup-php@v2
+              with:
+                php-version: '7.3'
 
-          - name: Initialize config
-            id: config
-            run: |
-              echo "::set-output name=working-directory::${PWD/$GITHUB_WORKSPACE/}"
-              echo "::set-output name=composer-cache-dir::$(composer config cache-files-dir)"
+            - name: Add composer repositories
+              env:
+                USERNAME: ${{ secrets.COMPOSER_MAGENTO_USERNAME }}
+                PASSWORD: ${{ secrets.COMPOSER_MAGENTO_PASSWORD }}
+              run: composer config repositories.magento composer https://$USERNAME:$PASSWORD@repo.magento.com/
 
-          - name: Retrieve composer cache
-            uses: actions/cache@v2
-            with:
-              path: ${{ steps.config.outputs.composer-cache-dir }}
-              key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-              restore-keys: ${{ runner.os }}-composer-
+            - name: Install dependencies
+              run: composer install --prefer-dist --no-progress --no-suggest
 
-          - run: composer global require hirak/prestissimo
-          - run: composer install --no-interaction --dev
-
-          - uses: mediotype/phpcs-action@v2
-            with:
-              enable_warnings: true # This is required for magento-coding-standards to function
-              only_changed_files: false # Required to run checks on push events too
-              phpcs_bin_path: vendor/bin/phpcs -s --colors --report-full --standard=Magento2 --exclude=Magento2.Security.XssTemplate --ignore=vendor --extensions=php,phtml *
+            - name: Run tests
+              run: composer run-script test
