@@ -1,3 +1,3 @@
 ## CsTest
 
-Dummy Magento module to test CS action on GitHub
+Dummy Magento module to test CS action on GitHub easily
