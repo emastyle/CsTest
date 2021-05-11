@@ -9,10 +9,10 @@ jobs:
           run: echo For security reasons, all pull requests need to be approved first before running any automated CI.
 
     backend-lint:
-    runs-on: ubuntu-latest
-    needs: [ approve ] # Require the first step to finish
-        environment:
-            name: Approve PR # Our dummy environmen
+        runs-on: ubuntu-latest
+        needs: [ approve ] # Require the first step to finish
+            environment:
+                name: Approve PR # Our dummy environmen
     steps:
     - name: Checkout
       uses: actions/checkout@v2
