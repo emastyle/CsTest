@@ -1,5 +1,5 @@
 ---
-name: Workflow Trigger
+name: Workflow
 
 on:
     - pull_request

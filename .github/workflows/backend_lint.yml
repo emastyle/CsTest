@@ -3,9 +3,10 @@ name: Backend Lint
 
 on:
     workflow_run:
-        workflows: ["Workflow Trigger"]
+        workflows:
+            - Workflow
         types:
-            - requested
+            - completed
 jobs:
     backend-lint:
         name: Backend CS
