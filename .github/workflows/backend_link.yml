@@ -1,0 +1,59 @@
+name: "Backend Link"
+
+on:
+    workflow_run:
+        workflows: ["Receive Pull Request"]
+        types:
+            - completed
+
+jobs:
+    upload:
+        runs-on: ubuntu-latest
+        if: >
+            ${{ github.event.workflow_run.event == 'pull_request' &&
+            github.event.workflow_run.conclusion == 'success' }}
+        steps:
+            - name: 'Download artifact'
+              uses: zkamvar/actions/download-workflow-artifact@main
+              with:
+                  run: ${{ github.event.workflow_run.id }}
+                  dir: ${{ github.workspace }}
+                  repo: ${{ github.repository }}
+                  name: 'pr'
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: "Get PR Number"
+              id: get-pr
+              run: |
+                  unzip pr.zip
+                  echo "::set-output name=NUM::$(cat ./NUM)"
+
+            - name: "Check PR"
+              id: check-pr
+              uses: zkamvar/actions/check-valid-pr@main
+              with:
+                  pr: ${{ steps.get-pr.outputs.NUM }}
+                  sha: ${{ github.events.workflow_run.head_commit.sha }}
+                  repo: ${{ github.repository }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: "Inspect Payload"
+              run: |
+                  echo ${{ steps.check-pr.outputs.VALID }}
+                  echo ${{ steps.check-pr.outputs.payload }}
+
+    -   uses: shivammathur/setup-php@v2
+            with:
+                php-version: '7.3'
+
+            -   name: Add composer repositories
+                env:
+                    USERNAME: ${{ secrets.COMPOSER_MAGENTO_USERNAME }}
+                    PASSWORD: ${{ secrets.COMPOSER_MAGENTO_PASSWORD }}
+                run: composer config repositories.magento composer https://$USERNAME:$PASSWORD@repo.magento.com/
+
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress --no-suggest
+
+            -   name: Run tests
+                run: composer run-script test
