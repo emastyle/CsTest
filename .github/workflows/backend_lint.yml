@@ -1,15 +1,15 @@
 ---
-name: Backend
+name: Backend Lint
 
 on:
     workflow_run:
         workflows:
-            - Workflow
+            - Workflow Trigger
         types:
-            - completed
+            - requested
 jobs:
     test-job:
-        name: Backend Link
+        name: Backend CS
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout
