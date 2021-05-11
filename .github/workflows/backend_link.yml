@@ -46,7 +46,10 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
               with:
-                  ref: ${{ github.events.workflow_run.head_commit.sha }}
+                  pr: ${{ steps.get-pr.outputs.NUM }}
+                  sha: ${{ github.events.workflow_run.head_commit.sha }}
+                  repo: ${{ github.repository }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - uses: shivammathur/setup-php@v2
               with:
