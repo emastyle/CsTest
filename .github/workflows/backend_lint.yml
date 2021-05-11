@@ -7,7 +7,7 @@ on:
         types:
             - requested
 jobs:
-    test-job:
+    backend-lint:
         name: Backend CS
         runs-on: ubuntu-latest
         steps:
