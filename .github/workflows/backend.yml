@@ -1,7 +1,9 @@
 ---
 name: Backend Coding Standard
-on: [ push, pull_request_target ]
-types: [labeled]
+    on:
+        pull_request_target:
+            types: [labeled]
+        push:
 jobs:
     backend-lint:
         runs-on: ubuntu-latest
