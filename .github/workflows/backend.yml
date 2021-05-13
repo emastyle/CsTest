@@ -1,10 +1,11 @@
 ---
 name: Backend Coding Standard
 on: [ push, pull_request_target ]
+types: [labeled]
 jobs:
     backend-lint:
         runs-on: ubuntu-latest
-        if: (github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]') && contains(github.event.pull_request.labels.*.name, 'safe to test')
+        if: contains(github.event.pull_request.labels.*.name, 'safe to test')
         steps:
             - name: Fork Checkout
               uses: actions/checkout@v2
