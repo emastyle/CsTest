@@ -2,20 +2,11 @@
 name: Backend Coding Standard
 on: [ push, pull_request_target ]
 jobs:
-    approve: # First step
-        runs-on: ubuntu-latest
-        steps:
-        - name: Approve
-          run: echo For security reasons, all pull requests need to be approved first before running any automated CI.
-
     backend-lint:
         runs-on: ubuntu-latest
-        needs: [ approve ] # Require the first step to finish
-        if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
-        environment:
-           name: Approve PR # Our dummy environmen
         steps:
-            - name: Checkout
+            if: (github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]') && contains(github.event.pull_request.labels.*.name, 'safe to test')
+            - name: Fork Checkout
               uses: actions/checkout@v2
               with:
                   ref: ${{ github.event.pull_request.head.sha }}
