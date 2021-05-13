@@ -4,6 +4,7 @@ on:
     pull_request_target:
         types: [labeled]
     push:
+        types: [labeled]
 jobs:
     backend-lint:
         runs-on: ubuntu-latest
