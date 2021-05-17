@@ -1,5 +1,5 @@
 ---
-name: ORIGINAL Backend Coding Standard
+name: Backend Coding Standard (push)
 on: [push]
 jobs:
   mcs-backend-lint:
