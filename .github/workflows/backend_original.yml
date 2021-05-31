@@ -1,6 +1,6 @@
 ---
 name: Backend Coding Standard (push)
-on: [push]
+on: [push, pull_request_target]
 jobs:
   mcs-backend-lint:
     runs-on: ubuntu-latest
