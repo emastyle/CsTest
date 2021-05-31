@@ -4,6 +4,7 @@ on:
 jobs:
     label_issues:
         runs-on: ubuntu-latest
+        if: github.event.pull_request.head.repo.full_name != github.repository && github.actor != 'dependabot[bot]'
         steps:
             - name: Label PR
               uses: andymckay/labeler@master
