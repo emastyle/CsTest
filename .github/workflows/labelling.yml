@@ -1,11 +1,11 @@
-name: Label issues
+name: Label PR
 on:
     pull_request_target:
 jobs:
     label_issues:
         runs-on: ubuntu-latest
         steps:
-            - name: Label issues
+            - name: Label PR
               uses: andymckay/labeler@master
               with:
                   remove-labels: "safe to test"
