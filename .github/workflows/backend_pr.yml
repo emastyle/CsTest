@@ -46,7 +46,7 @@ jobs:
           phpcs_bin_path: vendor/bin/phpcs -s --colors --report-full --standard=Magento2 --exclude=Magento2.Security.XssTemplate --ignore=vendor --extensions=php,phtml *
 
       - name: Remove labels
-          uses: andymckay/labeler@master
-          with:
-              remove-labels: "check is safe to test"
-              repo-token: ${{ secrets.GITHUB_TOKEN }}
+        uses: andymckay/labeler@master
+        with:
+            remove-labels: "check is safe to test"
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
