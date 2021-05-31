@@ -1,0 +1,14 @@
+name: Label issues
+on:
+    pull_request_target:
+jobs:
+    label_issues:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Label issues
+              uses: andymckay/labeler@1.0.2
+              with:
+                  remove-labels: "safe to test"
+                  add-labels: "check is safe to test"
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+
