@@ -12,17 +12,16 @@ jobs:
       image: docker.io/davidalger/php:7.4
 
     steps:
-
      - name: Remove labels
        uses: andymckay/labeler@master
        with:
            remove-labels: "check is safe to test"
            repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-            ref: ${{ github.event.pull_request.head.sha }}
+     - name: Checkout repository
+       uses: actions/checkout@v2
+       with:
+           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Add composer repositories
         env:
