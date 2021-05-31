@@ -1,2 +1,2 @@
 <?php
-// empty file
+die();
